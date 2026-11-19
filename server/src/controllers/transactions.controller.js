@@ -96,7 +96,7 @@ async function getTransactions(req, res) {
       return res.status(400).json({ error: 'Geçersiz dönem. "weekly" veya "monthly" kullanın.' });
     }
 
-    const anchorDate = date || new Date().toISOString().slice(0, 10);
+    const anchorDate = date || formatDate(new Date());
     const { start, end } = getPeriodBounds(period, anchorDate);
 
     const [rows] = await pool.query(

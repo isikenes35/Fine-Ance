@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
+import dayjs from 'dayjs';
 
 export default function TransactionForm({ onSuccess }) {
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
-  const [entryDate, setEntryDate] = useState(new Date().toISOString().slice(0, 10));
+  const [entryDate, setEntryDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function TransactionForm({ onSuccess }) {
       setCategoryId('');
       setAmount('');
       setDescription('');
-      setEntryDate(new Date().toISOString().slice(0, 10));
+      setEntryDate(dayjs().format('YYYY-MM-DD'));
       onSuccess?.();
     } catch (err) {
       const msg = err.response?.data?.error || 'İşlem eklenirken hata oluştu.';

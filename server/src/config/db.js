@@ -11,6 +11,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   charset: 'utf8mb4',
+  dateStrings: true, // DATE sütunları 'YYYY-MM-DD' metni olarak gelsin, Date nesnesine çevrilmesin
 });
 
 module.exports = pool;
